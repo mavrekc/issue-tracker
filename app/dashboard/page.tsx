@@ -10,7 +10,11 @@ import { ISSUE_STATUS, ISSUE_PRIORITY } from '@/db/schema'
 export default async function DashboardPage() {
   await getCurrentUser()
   const issues = await getIssues()
-  
+
+  const inProgressCount = issues.filter(
+    (issue) => issue.status === 'in_progress'
+  ).length
+  const doneCount = issues.filter((issue) => issue.status === 'done').length
 
   return (
     <div>
@@ -25,6 +29,33 @@ export default async function DashboardPage() {
           </Button>
         </Link>
       </div>
+
+      {issues.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <div className="rounded-lg border border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-high p-4">
+            <p className="text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+              Total
+            </p>
+            <p className="mt-1 text-2xl font-bold">{issues.length}</p>
+          </div>
+          <div className="rounded-lg border border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-high p-4">
+            <p className="text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+              In Progress
+            </p>
+            <p className="mt-1 text-2xl font-bold text-amber-600 dark:text-amber-400">
+              {inProgressCount}
+            </p>
+          </div>
+          <div className="rounded-lg border border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-high p-4">
+            <p className="text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+              Done
+            </p>
+            <p className="mt-1 text-2xl font-bold text-green-600 dark:text-green-400">
+              {doneCount}
+            </p>
+          </div>
+        </div>
+      )}
 
       {issues.length > 0 ? (
         <div className="overflow-hidden rounded-lg border border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-high shadow-sm">
