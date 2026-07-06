@@ -32,6 +32,13 @@ vi.mock('@/lib/utils', () => ({
   cn: vi.fn((...args) => args.join(' ')),
 }))
 
+// Mock next/navigation hooks used by IssueFilters
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ replace: vi.fn(), push: vi.fn() }),
+  usePathname: () => '/dashboard',
+  useSearchParams: () => new URLSearchParams(),
+}))
+
 describe('DashboardPage', () => {
   beforeEach(() => {
     vi.clearAllMocks()
@@ -78,17 +85,25 @@ describe('DashboardPage', () => {
     vi.mocked(getIssues).mockResolvedValue(mockIssues)
 
     // Render the component (await it since it's an RSC)
-    const Component = await DashboardPage()
+    const Component = await DashboardPage({ searchParams: Promise.resolve({}) })
     render(Component)
 
     // Assertions
     expect(screen.getByText('Issues')).toBeInTheDocument()
     expect(screen.getByText('Test Issue 1')).toBeInTheDocument()
     expect(screen.getByText('Test Issue 2')).toBeInTheDocument()
-    expect(screen.getByText(ISSUE_STATUS.todo.label)).toBeInTheDocument()
-    expect(screen.getByText(ISSUE_STATUS.in_progress.label)).toBeInTheDocument()
-    expect(screen.getByText(ISSUE_PRIORITY.medium.label)).toBeInTheDocument()
-    expect(screen.getByText(ISSUE_PRIORITY.high.label)).toBeInTheDocument()
+    expect(
+      screen.getAllByText(ISSUE_STATUS.todo.label).length
+    ).toBeGreaterThan(0)
+    expect(
+      screen.getAllByText(ISSUE_STATUS.in_progress.label).length
+    ).toBeGreaterThan(0)
+    expect(
+      screen.getAllByText(ISSUE_PRIORITY.medium.label).length
+    ).toBeGreaterThan(0)
+    expect(
+      screen.getAllByText(ISSUE_PRIORITY.high.label).length
+    ).toBeGreaterThan(0)
     expect(screen.getAllByText('2 days ago')).toHaveLength(2)
   })
 
@@ -97,7 +112,7 @@ describe('DashboardPage', () => {
     vi.mocked(getIssues).mockResolvedValue([])
 
     // Render the component (await it since it's an RSC)
-    const Component = await DashboardPage()
+    const Component = await DashboardPage({ searchParams: Promise.resolve({}) })
     render(Component)
 
     // Assertions
