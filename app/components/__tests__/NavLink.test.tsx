@@ -39,8 +39,8 @@ describe('NavLink Component', () => {
     )
 
     const link = screen.getByRole('link')
-    expect(link.className).toContain('bg-purple-100')
-    expect(link.className).toContain('text-purple-700')
+    expect(link.className).toContain('bg-primary-100')
+    expect(link.className).toContain('text-primary-700')
   })
 
   it('applies inactive styles when isActive is false', () => {

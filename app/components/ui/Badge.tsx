@@ -8,6 +8,7 @@ type BadgeVariant =
   | 'success'
   | 'warning'
   | 'danger'
+  | 'info'
 type StatusType = 'backlog' | 'todo' | 'in_progress' | 'done'
 type PriorityType = 'low' | 'medium' | 'high'
 
@@ -32,7 +33,7 @@ export default function Badge({
         case 'backlog':
           return 'secondary'
         case 'todo':
-          return 'default'
+          return 'info'
         case 'in_progress':
           return 'warning'
         case 'done':
@@ -47,7 +48,7 @@ export default function Badge({
         case 'low':
           return 'secondary'
         case 'medium':
-          return 'default'
+          return 'warning'
         case 'high':
           return 'danger'
         default:
@@ -60,7 +61,7 @@ export default function Badge({
 
   const variantStyles = {
     default:
-      'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
+      'bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-300',
     secondary: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300',
     outline:
       'border border-gray-200 text-gray-800 dark:border-dark-border-medium dark:text-gray-300',
@@ -69,6 +70,7 @@ export default function Badge({
     warning:
       'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
     danger: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300',
+    info: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
   }
 
   const badgeVariant = getBadgeVariant()

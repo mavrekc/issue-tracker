@@ -81,7 +81,7 @@ function PlanCard({
     <div
       className={`rounded-lg p-6 ${
         highlighted
-          ? 'bg-purple-900 border-2 border-purple-700 shadow-md'
+          ? 'bg-primary-900 border-2 border-primary-700 shadow-md'
           : 'bg-gray-800 border border-gray-700 shadow-sm'
       }`}
     >
@@ -103,7 +103,7 @@ function PlanCard({
         href={buttonLink}
         className={`w-full inline-flex h-10 items-center justify-center rounded-md px-8 py-2 text-sm font-medium shadow transition-colors ${
           highlighted
-            ? 'bg-purple-600 text-white hover:bg-purple-700'
+            ? 'bg-primary-600 text-white hover:bg-primary-700'
             : 'bg-gray-800 border border-gray-700 hover:bg-gray-700 text-white'
         }`}
       >

@@ -1,15 +1,18 @@
-import type { NextConfig } from 'next'
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  experimental: {
-    dynamicIO: true,
-  },
+  // experimental: {
+  //   cacheComponents: true,
+  // },
   typescript: {
     ignoreBuildErrors: true,
   },
   eslint: {
     ignoreDuringBuilds: true,
   },
-}
+  experimental: {
+    useCache: true,
+  },
+};
 
-export default nextConfig
+export default nextConfig;

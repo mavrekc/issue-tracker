@@ -15,7 +15,7 @@ export default function NavLink({ href, icon, label, isActive }: NavLinkProps) {
       className={cn(
         'flex items-center px-2 py-2 text-sm font-medium rounded-md group',
         isActive
-          ? 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200'
+          ? 'bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-200'
           : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
       )}
     >
