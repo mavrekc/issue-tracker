@@ -20,6 +20,62 @@ A lightweight issue-tracking and project-management application built on Next.js
 - Node.js 22+ and npm/yarn
 - PostgreSQL database (or use a service like [Neon](https://neon.tech/))
 
+## Getting Started
+
+### 1. Clone and install dependencies
+
+```bash
+git clone <repo-url>
+cd issue-tracker
+npm install
+```
+
+### 2. Create a local database
+
+```bash
+createdb issue_tracker
+```
+
+Or via `psql`:
+
+```sql
+CREATE DATABASE issue_tracker;
+```
+
+### 3. Configure environment variables
+
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` and set `DATABASE_URL` to your local database, and set `JWT_SECRET` to a random string of at least 32 characters.
+
+### 4. Run database migrations
+
+```bash
+npm run db:migrate
+```
+
+This applies the SQL migrations in `drizzle/` to create the tables. After changing the schema (`db/schema.ts`), run `npm run db:generate` to regenerate the migration files.
+
+### 5. Seed demo data
+
+```bash
+npm run seed
+```
+
+This creates two demo accounts, `admin@example.com` and `user@example.com`, both with password `password123`.
+
+### 6. Start the dev server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view the app.
+
+> Tip: run `npm run db:studio` to browse the database with Drizzle Studio.
+
 ## Project Structure
 
 - `app/` - Next.js App Router pages and layouts
