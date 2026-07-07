@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { HomeIcon, PlusIcon, LogInIcon } from 'lucide-react'
+import { HomeIcon, PlusIcon, LogInIcon, LayoutGrid } from 'lucide-react'
 import UserEmail from './UserEmail'
 import { Suspense } from 'react'
 import NavLink from './NavLink'
@@ -22,6 +22,11 @@ export default function Navigation() {
           href="/dashboard"
           icon={<HomeIcon size={20} />}
           label="Dashboard"
+        />
+        <NavLink
+          href="/board"
+          icon={<LayoutGrid size={20} />}
+          label="Board"
         />
         <NavLink
           href="/issues/new"
